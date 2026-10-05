@@ -3,6 +3,7 @@ title: "Reproducible Quarto"
 format: html
 editor: visual
 ---
+
 ```{r}
 #| message : false
 library(tidyverse)
@@ -10,11 +11,13 @@ bond.data <- read_csv("data/jamesbond.csv")
 bond.data
 ```
 
+
 Which movie earned the most?
 ```{r}
 ##| cache : true
 ##| echo : false
 ##| output : false
+
 profitable <- bond.data |>
     select(Year, Movie, US_Gross) |>
     arrange(desc(US_Gross))
@@ -23,8 +26,8 @@ profitable
 
 The most profitable movie was `r profitable$Movie[1]`, made in `r profitable$Year[1]`. It made a profit of about `r (signif(profitable$US_Gross[1],1))/(10^6)` million.
 
-
 `Is there a correlation between budget and earnings?`
+
 ```{r}
 ggplot(bond.data, aes(x=Budget, y=US_Gross)) +
     geom_point()
@@ -35,8 +38,7 @@ ggplot(bond.data, aes(x=Budget, y=US_Gross, color=Year)) +
     scale_color_continuous()
 ```
 
-`Definitely looks like year correlates with both earnings and budget.`
-`The dataset contains inflation-adjusted numbers, let's use those instead.`
+`Definitely looks like year correlates with both earnings and budget.` `The dataset contains inflation-adjusted numbers, let's use those instead.`
 
 ```{r}
 ggplot(bond.data, aes(x=Budget_Adj, y=US_Adj, color=Year)) +
@@ -46,8 +48,7 @@ ggplot(bond.data, aes(x=Budget_Adj, y=US_Adj, color=Year)) +
 
 `Still seems budget is increasing with year even after inflation adjustment, but the correlation with returns is now much less clear.`
 
-`Just for fun: is there a correlation between the number of times` 
-`Bond says "Bond, James Bond" and return??`
+`Just for fun: is there a correlation between the number of times` `Bond says "Bond, James Bond" and return??`
 
 ```{r}
 ggplot(bond.data, aes(x=BJB, y=US_Adj)) +
@@ -55,9 +56,4 @@ ggplot(bond.data, aes(x=BJB, y=US_Adj)) +
     scale_color_continuous()
 ```
 
-`It seems the movies earn more if he says it 0 or 2 times?`
-`Probably a spurious correlation!`
-
-
-
-
+`It seems the movies earn more if he says it 0 or 2 times?` `Probably a spurious correlation!`
