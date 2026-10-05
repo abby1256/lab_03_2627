@@ -19,7 +19,7 @@ bond.data
 profitable <- bond.data |>
     select(Year, Movie, US_Gross) |>
     arrange(desc(US_Gross))
-profitable
+profitable 
 ```
 
 `The most profitable movie was Skyfall, made in 2012. It made a profit of about $300 million.`
@@ -41,7 +41,7 @@ ggplot(bond.data, aes(x=Budget, y=US_Gross, color=Year)) +
 ```{r}
 ggplot(bond.data, aes(x=Budget_Adj, y=US_Adj, color=Year)) +
     geom_point() +
-    scale_color_continuous()
+    scale_color()
 ```
 
 `Still seems budget is increasing with year even after inflation adjustment, but the correlation with returns is now much less clear.`
@@ -55,3 +55,10 @@ ggplot(bond.data, aes(x=BJB, y=US_Adj)) +
 ```
 
 `It seems the movies earn more if he says it 0 or 2 times?` `Probably a spurious correlation!`
+
+
+```{r}
+ggplot(bond.data, aes(x=Martinis, y=US_Adj, color = Year)) +
+    geom_point() +
+    scale_color_continuous(type = "viridis", option = "D")
+```
