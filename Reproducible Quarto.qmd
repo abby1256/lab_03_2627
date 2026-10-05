@@ -43,7 +43,7 @@ ggplot(bond.data, aes(x=Budget, y=US_Gross, color=Year)) +
 ```{r}
 ggplot(bond.data, aes(x=Budget_Adj, y=US_Adj, color=Year)) +
     geom_point() +
-    scale_color()
+    scale_color_continuous()
 ```
 
 `Still seems budget is increasing with year even after inflation adjustment, but the correlation with returns is now much less clear.`
@@ -64,3 +64,5 @@ ggplot(bond.data, aes(x=Martinis, y=US_Adj, color = Year)) +
     geom_point() +
     scale_color_continuous(type = "viridis", option = "D")
 ```
+
+`helloooooo`
