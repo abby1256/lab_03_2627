@@ -4,19 +4,24 @@ format: html
 editor: visual
 ---
 ```{r}
+#| message : false
 library(tidyverse)
 bond.data <- read_csv("data/jamesbond.csv")
 bond.data
 ```
 
-`Which movie earned the most?`
+Which movie earned the most?
 ```{r}
-bond.data |>
+##| cache : true
+##| echo : false
+##| output : false
+profitable <- bond.data |>
     select(Year, Movie, US_Gross) |>
     arrange(desc(US_Gross))
+profitable
 ```
 
-`The most profitable movie was Skyfall, made in 2012. It made a profit of about $300 million.`
+The most profitable movie was `r profitable$Movie[1]`, made in `r profitable$Year[1]`. It made a profit of about `r (signif(profitable$US_Gross[1],1))/(10^6)` million.
 
 
 `Is there a correlation between budget and earnings?`
